@@ -2,19 +2,29 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SelamatDatangController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController; // Tambahkan ini
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+/* ... */
 
 Route::get('/', [SelamatDatangController::class, 'index']);
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
+// Rute autentikasi
+// Route::get('/register', [AuthController::class, 'tampilRegister'])->name('register');
+// Route::post('/register', [AuthController::class, 'register']);
+// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [AuthController::class, 'login']);
+// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/registrasi', [AuthController::class, 'tampilRegistrasi'])->name('registrasi.tampil');
+Route::post('/registrasi/submit', [AuthController::class, 'submitRegistrasi'])->name('registrasi.submit');
+Route::get('/login', [AuthController::class, 'tampilLogin'])->name('login.tampil');
+Route::get('/login/submit', [AuthController::class, 'submitLogin'])->name('login.submit');
+
+// Route::get('/siswa', [SiswaController::class, 'tampil'])->name('siswa.tampil');
+// Route::get('/siswa/tambah', [SiswaController::class, 'tambah'])->name('siswa.tambah');
+// Route::post('/siswa/submit', [SiswaController::class, 'submit'])->name('siswa.submit');
+// Route::get('/siswa/edit/{id}', [SiswaController::class, 'edit'])->name('siswa.edit');
+// Route::post('/siswa/update/{id}', [SiswaController::class, 'update'])->name('siswa.update');
+// Route::post('/siswa/delete/{id}', [SiswaController::class, 'delete'])->name('siswa.delete');
